@@ -39,7 +39,10 @@ class Piece:
             self._board.build(structure_position)
         else:
             raise InvalidBuildError()   
-        
+    
+    def create_memento(self):
+        return PieceMemento(copy.deepcopy(self._position), copy.deepcopy(self._level))
+    
     def project_position(self, direction):
         new_position = self._position.copy()
         
@@ -93,3 +96,4 @@ class PieceB(Piece):
         self._position = [1, 3]
     def __str__(self):
         return "B"
+

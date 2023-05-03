@@ -19,9 +19,17 @@ class Player:
             selected_piece.build_adjacent(build_direction)
         except InvalidBuildError:
             raise
-   
+    
+    # used for the command
+    def get_piece(self, piece_no):
+        return self._pieces[piece_no]
 
-
+    def get_piece_positions(self):
+        positions = []
+        for piece in self._pieces:
+            positions.append(piece.get_position())
+        
+        return positions
 
 
 # class HumanPlayer:

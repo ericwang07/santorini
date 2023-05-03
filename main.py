@@ -2,14 +2,16 @@ import sys
 from board import Board
 from player import Player
 from strategy import HumanStrategy, RandomStrategy, HeuristicStrategy
+from commands import MoveCommand, BuildCommand
 
-class SantoriniCLI():
+class GameManager():
     def __init__(self):
         self.board = Board() 
         self.turn = 1                
         pieces = self.board.get_pieces()
         white_pieces, blue_pieces = pieces[0], pieces[1]        
-        self.white_player = Player(white_pieces)
+        
+        self.white_player = Player(white_pieces)                        
         self.blue_player = Player(blue_pieces)
         
         if sys.argv[1] == "human":                                    
@@ -47,7 +49,8 @@ class SantoriniCLI():
             else:
                 self.blue_strategy.display_prompt(self, self.score_display)
 
-
-            
+def main():    
+    GameManager().run()
+                
 if __name__ == "__main__":
-    SantoriniCLI().run()
+    main()

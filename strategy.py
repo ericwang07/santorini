@@ -2,6 +2,7 @@ import sys
 import abc
 import random
 from CustomExceptions import InvalidBuildError, InvalidDirectionError, InvalidMoveError, InvalidWorkerError, DifferentColorWorkerError
+from commands import MoveCommand, BuildCommand
 
 class Strategy(metaclass=abc.ABCMeta):
     @abc.abstractmethod
@@ -47,10 +48,14 @@ class HumanStrategy(Strategy):
         while(True):            
             try:                            
                 move_direction = self._move_prompt()                 
-                if manager.turn % 2 == 1:
-                    manager.white_player.move(piece_no, move_direction)                
+                if manager.turn % 2 == 1:                    
+                    manager.white_player.move = MoveCommand(manager.white_player, piece_no, move_direction)
+                    manager.white_player.move()    
+                    # manager.white_player.move(piece_no, move_direction)                   
                 else:
-                    manager.blue_player.move(piece_no, move_direction)                
+                    manager.blue_player.move = MoveCommand(manager.blue_player, piece_no, move_direction)
+                    manager.blue_player.move()
+                    # manager.blue_player.move(piece_no, move_direction)                
                 break
             except InvalidDirectionError:                
                 print("Not a valid direction")  
@@ -63,9 +68,13 @@ class HumanStrategy(Strategy):
             try:                
                 build_direction = self._build_prompt()
                 if manager.turn % 2 == 1:
-                    manager.white_player.build(piece_no, build_direction)                
+                    manager.white_player.build = BuildCommand(manager.white_player, piece_no, build_direction)
+                    manager.white_player.build()    
+                    # manager.white_player.build(piece_no, build_direction)                
                 else:
-                    manager.blue_player.build(piece_no, build_direction)                     
+                    manager.blue_player.build = BuildCommand(manager.blue_player, piece_no, build_direction)
+                    manager.blue_player.build()
+                    # manager.blue_player.build(piece_no, build_direction)                     
                 break
             except InvalidDirectionError:                
                 print("Not a valid direction")      
@@ -146,11 +155,21 @@ class RandomStrategy(Strategy):
         
         
         if manager.turn % 2 == 1:
-            manager.white_player.move(piece_no, move_direction)                
-            manager.white_player.build(piece_no, build_direction)                        
+            manager.white_player.move = MoveCommand(manager.white_player, piece_no, move_direction)
+            manager.white_player.move()
+            
+            manager.white_player.build = BuildCommand(manager.white_player, piece_no, build_direction)
+            manager.white_player.build()
+            # manager.white_player.move(piece_no, move_direction)                            
+            # manager.white_player.build(piece_no, build_direction)                        
         else:
-            manager.blue_player.move(piece_no, move_direction)          
-            manager.blue_player.build(piece_no, build_direction)                                    
+            manager.blue_player.move = MoveCommand(manager.blue_player, piece_no, move_direction)
+            manager.blue_player.move()
+            
+            manager.blue_player.build = BuildCommand(manager.blue_player, piece_no, build_direction)
+            manager.blue_player.build()
+            # manager.blue_player.move(piece_no, move_direction)          
+            # manager.blue_player.build(piece_no, build_direction)                                    
         
         print(f"{piece_letter},{move_direction},{build_direction}")
                 
