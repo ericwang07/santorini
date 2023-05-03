@@ -83,7 +83,7 @@ class Board():
         for piece in pieces:
             (piece_x, piece_y) = piece.get_position()
             occupied_cell = self._cells[piece_x][piece_y]
-            if occupied_cell.is_max_height():
+            if occupied_cell.is_max_climb_height():
                 return "white" if piece in self._white_pieces else "blue"
         return None    
     
@@ -314,6 +314,9 @@ class Cell():
         return (self._piece == None)
     
     def is_max_height(self):
+        return self._level == 4
+    
+    def is_max_climb_height(self):
         return self._level == 3
     
     def is_reachable(self, other):        
