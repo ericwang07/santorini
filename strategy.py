@@ -99,8 +99,8 @@ class HumanStrategy(Strategy):
             except DifferentColorWorkerError:
                 print("That is not your worker")
             except InvalidWorkerError:
-                print("Not a valid worker")
-        return 0 if (piece == "A" or "Y") else 1
+                print("Not a valid worker")        
+        return 0 if (piece == "A" or piece == "Y") else 1
     
     def _move_prompt(self):                     
         print("Select a direction to move (n, ne, e, se, s, sw, w, nw)")        
