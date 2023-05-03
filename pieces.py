@@ -27,7 +27,7 @@ class Piece:
         if self._board.check_movable(old_position, new_position):
             self._position = new_position
             self._board.update_board(self, new_position, old_position)        
-        else:
+        else:            
             raise InvalidMoveError() 
                
         return (self._position, old_position)
@@ -35,7 +35,7 @@ class Piece:
     def build_adjacent(self, direction):        
         structure_position = self.project_position(direction)
 
-        if self._board.check_buildable(structure_position):
+        if self._board.check_buildable(self._position, structure_position):
             self._board.build(structure_position)
         else:
             raise InvalidBuildError()   
