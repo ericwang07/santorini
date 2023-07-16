@@ -1,5 +1,5 @@
 # Santorini
-A CLI simulation of the santorini board game. Find the link to the board game instructions [here](http://files.roxley.com/Santorini-Rulebook-Web-2016.08.14.pdf). This will only include the simplest version of the game (only read page 1 of the instruction manual).
+A CLI simulation of the santorini board game. Find the link to the board game instructions [here](http://files.roxley.com/Santorini-Rulebook-Web-2016.08.14.pdf). This will only include the simplest version of the game (page 1 of the instruction manual).
 
 ## Instructions
 Type ```python3 main.py [white_type] [blue_type] [undo/redo] [score_display]``` to run the game. The options for the optional arguments are as follows:
