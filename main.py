@@ -20,7 +20,9 @@ class GameManager():
         self.undo_redo = False
         self.score_display = False
         
-        if sys.argv[1] == "human":                                    
+        print(len(sys.argv))
+        
+        if len(sys.argv) < 2 or sys.argv[1] == "human":                                    
             caretaker = Caretaker(self)
             self.white_strategy = HumanStrategy(caretaker)            
         elif sys.argv[1] == "random":            
@@ -28,24 +30,24 @@ class GameManager():
         elif sys.argv[1] == "heuristic":            
             self.white_strategy = HeuristicStrategy()
                                
-        if sys.argv[2] == "human":                        
+        if len(sys.argv) < 3 or sys.argv[2] == "human":                        
             self.blue_strategy = HumanStrategy(caretaker)
         elif sys.argv[2] == "random":            
             self.blue_strategy = RandomStrategy()
         elif sys.argv[2] == "heuristic":
             self.blue_strategy = HeuristicStrategy()
-        
-        if sys.argv[3] == "on":
-            self.undo_redo = True
-        elif sys.argv[3] == "off":
+                
+        if len(sys.argv) < 4 or sys.argv[3] == "off":
             self.undo_redo = False
+        elif sys.argv[3] == "on":
+            self.undo_redo = True
         else:
             raise Exception("Undo/Redo only takes 'on' or 'off'.")
         
-        if sys.argv[4] == "on":
-            self.score_display = True
-        elif sys.argv[4] == "off":
+        if len(sys.argv) < 5 or sys.argv[4] == "off":
             self.score_display = False
+        elif sys.argv[4] == "on":
+            self.score_display = True       
         else:
             raise Exception("Score display only takes 'on' or 'off'.")                                                
 
